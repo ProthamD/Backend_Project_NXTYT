@@ -3,13 +3,45 @@ import { DB_NAME } from "./constants.js";
 // what we learning here is database connection, and how it is done
 import connectDB from "./db/index.js";
 import dotenv from "dotenv"; 
+import { app } from "./app.js";
 dotenv.config(
     {
         path: "./.env"
     }
 ); // Load environment variables from .env file, we do this cause we want dotenv file get accessed by all the files from the start
 
-connectDB();
+connectDB()//whenever an aync menthod gets complete it also return a promise
+.then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+    })
+})
+.catch((error) => {})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import express from "express";
 // const app = express();
